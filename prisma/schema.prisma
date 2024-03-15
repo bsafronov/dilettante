@@ -3,11 +3,6 @@ enum Role {
   ADMIN
 }
 
-enum FieldType {
-  TEXT
-  NUMBER
-}
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -92,8 +87,7 @@ model ProcessTemplateStageFlow {
 }
 
 model ProcessTemplateStageField {
-  id          Int       @id @default(autoincrement())
-  type        FieldType @default(TEXT)
+  id          Int     @id @default(autoincrement())
   label       String?
   description String?
   placeholder String?

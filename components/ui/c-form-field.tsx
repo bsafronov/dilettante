@@ -18,8 +18,8 @@ type CFormFieldProps<
   ComponentPropsWithoutRef<typeof FormField<TFieldValues, TName>>,
   "control" | "name"
 > & {
-  label?: string;
-  description?: string;
+  label?: string | null;
+  description?: string | null;
   className?: string;
   placement?: CFormFieldPlacement;
   required?: boolean;

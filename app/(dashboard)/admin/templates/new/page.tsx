@@ -4,11 +4,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CForm } from "@/components/ui/c-form";
-import { createTemplate } from "@/actions/template";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { CFormField } from "@/components/ui/c-form-field";
 import { Input } from "@/components/ui/input";
+import { createProcessTemplate } from "@/actions/template";
 
 const schema = z.object({
   name: z.string(),
@@ -28,7 +28,7 @@ export default function Page() {
     console.log(data);
 
     try {
-      const { id } = await createTemplate(data);
+      const { id } = await createProcessTemplate(data);
       router.push(`/admin/templates/${id}`);
     } catch (e) {
       toast.error("Ошибка создания шаблона");
