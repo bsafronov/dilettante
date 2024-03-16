@@ -12,6 +12,9 @@ type Update = Pick<
   ProcessTemplateStageFlow,
   "id" | "fieldId" | "nextStageId" | "value"
 >;
+type FindMany = Partial<
+  Pick<ProcessTemplateStageFlow, "templateId" | "stageId">
+>;
 
 export const createProcessTemplateStageFlow = async ({
   fieldId,
@@ -92,10 +95,14 @@ export const deleteProcessTemplateStageFlow = async (id: ID) => {
   revalidatePath("/admin/templates/[templateId]", "page");
 };
 
-export const findManyProcessTemplateStageFlow = async (stageId: ID) => {
+export const findManyProcessTemplateStageFlow = async ({
+  stageId,
+  templateId,
+}: FindMany) => {
   return await db.processTemplateStageFlow.findMany({
     where: {
       stageId,
+      templateId,
     },
   });
 };

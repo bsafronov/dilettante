@@ -18,7 +18,7 @@ export const SelectProcessTemplateStage = forwardRef<
 
   useEffect(() => {
     const handleSetFields = async () => {
-      const fields = await findManyProcessTemplateStage(templateId);
+      const fields = await findManyProcessTemplateStage({ templateId });
       setFields(fields);
     };
 

@@ -9,7 +9,7 @@ type Props = {
   templateId: number;
 };
 export const StageList = async ({ templateId }: Props) => {
-  const stages = await findManyProcessTemplateStage(templateId);
+  const stages = await findManyProcessTemplateStage({ templateId });
 
   return (
     <Card

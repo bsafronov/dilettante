@@ -11,8 +11,8 @@ type Props = {
   templateId: ID;
 };
 export const StageFlowList = async ({ stageId, templateId }: Props) => {
-  const flows = await findManyProcessTemplateStageFlow(stageId);
-  const stages = await findManyProcessTemplateStage(templateId);
+  const flows = await findManyProcessTemplateStageFlow({ stageId });
+  const stages = await findManyProcessTemplateStage({ templateId });
   const stageFields = await findManyProcessTemplateStageField({ stageId });
   return (
     <Card

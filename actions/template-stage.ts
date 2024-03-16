@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 type Create = Pick<ProcessTemplateStage, "name" | "templateId">;
 type Update = Pick<ProcessTemplateStage, "name" | "id">;
-
+type FindMany = Partial<Pick<ProcessTemplateStage, "templateId">>;
 export const createProcessTemplateStage = async ({
   name,
   templateId,
@@ -56,7 +56,9 @@ export const findOneProcessTemplateStage = async (id: ID) => {
   });
 };
 
-export const findManyProcessTemplateStage = async (templateId: ID) => {
+export const findManyProcessTemplateStage = async ({
+  templateId,
+}: FindMany) => {
   return await db.processTemplateStage.findMany({
     where: {
       templateId,
