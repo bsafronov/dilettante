@@ -4,14 +4,14 @@ import { findManyProcessTemplateStage } from "@/actions/template-stage";
 import { ProcessTemplateStage } from "@prisma/client";
 import { ElementRef, forwardRef, useEffect, useState } from "react";
 import { ControllerRenderProps } from "react-hook-form";
-import { CSelect } from "./ui/c-select";
+import { Select } from "./ui/select";
 
 type Props = Omit<ControllerRenderProps, "ref"> & {
   templateId: ID;
   excludeStageId?: ID;
 };
 export const SelectProcessTemplateStage = forwardRef<
-  ElementRef<typeof CSelect>,
+  ElementRef<typeof Select>,
   Props
 >(({ templateId, excludeStageId, ...props }, ref) => {
   const [fields, setFields] = useState<ProcessTemplateStage[]>([]);
@@ -33,7 +33,7 @@ export const SelectProcessTemplateStage = forwardRef<
     }));
 
   return (
-    <CSelect
+    <Select
       ref={ref}
       options={options}
       placeholder="Выбрать поле..."

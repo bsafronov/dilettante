@@ -4,7 +4,7 @@ import {
   ProcessTemplateStageFlow,
 } from "@prisma/client";
 import { UpdateStageFlow } from "./update-stage-flow";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 type Props = {
   flow: ProcessTemplateStageFlow;

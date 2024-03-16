@@ -4,9 +4,8 @@ import { createProcessTemplateStageFlow } from "@/actions/template-stage-flow";
 import { SelectProcessTemplateStage } from "@/components/select-process-template-stage";
 import { SelectProcessTemplateStageField } from "@/components/select-process-template-stage-field";
 import { Button } from "@/components/ui/button";
-import { CDialog } from "@/components/ui/c-dialog";
-import { CForm } from "@/components/ui/c-form";
-import { CFormField } from "@/components/ui/c-form-field";
+import { Dialog } from "@/components/ui/dialog";
+import { Form, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { prepareDbData } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -61,19 +60,19 @@ export const CreateStageFlow = ({ templateId, stageId }: Props) => {
   });
 
   return (
-    <CDialog
+    <Dialog
       open={open}
       onOpenChange={toggle}
       title="Создание условия"
       trigger={<Button>Добавить условие</Button>}
     >
-      <CForm
+      <Form
         form={form}
         onSubmit={onSubmit}
         isLoading={isSubmitting}
         submitText="Создать"
       >
-        <CFormField
+        <FormField
           control={control}
           name="nextStageId"
           label="Следующий этап"
@@ -86,7 +85,7 @@ export const CreateStageFlow = ({ templateId, stageId }: Props) => {
             />
           )}
         />
-        <CFormField
+        <FormField
           control={control}
           name="fieldId"
           label="Поле формы"
@@ -98,14 +97,14 @@ export const CreateStageFlow = ({ templateId, stageId }: Props) => {
             />
           )}
         />
-        <CFormField
+        <FormField
           control={control}
           name="value"
           label="Значение"
           description="При каком значении перейти на следующий этап?"
           render={(props) => <Input {...props} />}
         />
-      </CForm>
-    </CDialog>
+      </Form>
+    </Dialog>
   );
 };

@@ -2,12 +2,9 @@
 
 import { findManyProcessTemplateField } from "@/actions/template-field";
 import { findManyProcessTemplateStageField } from "@/actions/template-stage-field";
-import { CForm } from "@/components/ui/c-form";
-import { CFormField } from "@/components/ui/c-form-field";
-import { Form } from "@/components/ui/form";
+import { Form, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowDown, ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { UpdateStageField } from "./update-stage-field";
@@ -34,7 +31,7 @@ export const StageFieldListDemoForm = ({
   const { control } = form;
 
   return (
-    <Form {...form}>
+    <Form form={form}>
       {stageFields.map((field) => (
         <div key={field.id} className="border border-dashed rounded-md p-4">
           <div className="flex gap-2 justify-between items-start">
@@ -44,7 +41,7 @@ export const StageFieldListDemoForm = ({
               {templateFields.find((item) => item.id === field.fieldId)?.name}
             </div>
           </div>
-          <CFormField
+          <FormField
             control={control}
             name="fields.0"
             label={field.label}

@@ -1,8 +1,8 @@
 "use client";
 
 import { deleteProcessTemplateStageFlow } from "@/actions/template-stage-flow";
+import { AlertDialog } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { CAlertDialog } from "@/components/ui/c-alert-dialog";
 import { Trash } from "lucide-react";
 
 type Props = {
@@ -13,13 +13,13 @@ export const DeleteStageFlow = ({ id }: Props) => {
   const onDelete = async () => deleteProcessTemplateStageFlow(id);
 
   return (
-    <CAlertDialog
+    <AlertDialog
       onSubmit={onDelete}
       description="Ссылка на следующий этап будет удалена!"
     >
       <Button variant={"destructive"} size={"icon"}>
         <Trash />
       </Button>
-    </CAlertDialog>
+    </AlertDialog>
   );
 };

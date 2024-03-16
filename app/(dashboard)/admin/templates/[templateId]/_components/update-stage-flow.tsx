@@ -4,9 +4,6 @@ import { updateProcessTemplateStageFlow } from "@/actions/template-stage-flow";
 import { SelectProcessTemplateStage } from "@/components/select-process-template-stage";
 import { SelectProcessTemplateStageField } from "@/components/select-process-template-stage-field";
 import { Button } from "@/components/ui/button";
-import { CDialog } from "@/components/ui/c-dialog";
-import { CForm } from "@/components/ui/c-form";
-import { CFormField } from "@/components/ui/c-form-field";
 import { Input } from "@/components/ui/input";
 import { prepareDbData } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +14,8 @@ import { toast } from "sonner";
 import { useBoolean } from "usehooks-ts";
 import { z } from "zod";
 import { DeleteStageFlow } from "./delete-stage-flow";
+import { Form, FormField } from "@/components/ui/form";
+import { Dialog } from "@/components/ui/dialog";
 const schema = z
   .object({
     fieldId: z.number(),
@@ -80,7 +79,7 @@ export const UpdateStageFlow = ({
   });
 
   return (
-    <CDialog
+    <Dialog
       open={open}
       onOpenChange={toggle}
       title="Редактирование"
@@ -91,8 +90,8 @@ export const UpdateStageFlow = ({
       }
       footer={<DeleteStageFlow id={id} />}
     >
-      <CForm form={form} onSubmit={onSubmit} submitText="Сохранить">
-        <CFormField
+      <Form form={form} onSubmit={onSubmit} submitText="Сохранить">
+        <FormField
           control={control}
           name="nextStageId"
           label="Следующий этап"
@@ -105,7 +104,7 @@ export const UpdateStageFlow = ({
             />
           )}
         />
-        <CFormField
+        <FormField
           control={control}
           name="fieldId"
           label="Поле формы"
@@ -118,7 +117,7 @@ export const UpdateStageFlow = ({
             />
           )}
         />
-        <CFormField
+        <FormField
           control={control}
           name="value"
           label="Значение"
@@ -126,7 +125,7 @@ export const UpdateStageFlow = ({
           description="При каком значении перейти на следующий этап?"
           render={(props) => <Input {...props} />}
         />
-      </CForm>
-    </CDialog>
+      </Form>
+    </Dialog>
   );
 };

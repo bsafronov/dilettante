@@ -3,12 +3,11 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { CForm } from "@/components/ui/c-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { CFormField } from "@/components/ui/c-form-field";
 import { Input } from "@/components/ui/input";
 import { createProcessTemplate } from "@/actions/template";
+import { Form, FormField } from "@/components/ui/form";
 
 const schema = z.object({
   name: z.string(),
@@ -36,13 +35,13 @@ export default function Page() {
   });
 
   return (
-    <CForm form={form} onSubmit={onSubmit} submitText="Создать">
-      <CFormField
+    <Form form={form} onSubmit={onSubmit} submitText="Создать">
+      <FormField
         control={control}
         name="name"
         label="Название"
         render={(props) => <Input {...props} />}
       />
-    </CForm>
+    </Form>
   );
 }

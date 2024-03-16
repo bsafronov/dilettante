@@ -1,9 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CDialog } from "@/components/ui/c-dialog";
-import { CForm } from "@/components/ui/c-form";
-import { CFormField } from "@/components/ui/c-form-field";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -11,6 +8,8 @@ import { z } from "zod";
 import { useBoolean } from "usehooks-ts";
 import { toast } from "sonner";
 import { createProcessTemplateStage } from "@/actions/template-stage";
+import { Dialog } from "@/components/ui/dialog";
+import { Form, FormField } from "@/components/ui/form";
 
 const schema = z.object({
   name: z.string(),
@@ -47,26 +46,26 @@ export const CreateStage = ({ templateId }: Props) => {
   });
 
   return (
-    <CDialog
+    <Dialog
       open={open}
       onOpenChange={toggle}
       title="Создание этапа"
       trigger={<Button>Создать этап</Button>}
     >
-      <CForm
+      <Form
         form={form}
         onSubmit={onSubmit}
         isLoading={isSubmitting}
         submitText="Создать"
       >
-        <CFormField
+        <FormField
           control={control}
           name="name"
           label="Название"
           required
           render={(props) => <Input {...props} />}
         />
-      </CForm>
-    </CDialog>
+      </Form>
+    </Dialog>
   );
 };

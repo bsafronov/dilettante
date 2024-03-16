@@ -1,8 +1,7 @@
 "use client";
 
 import { updateProcessTemplateStage } from "@/actions/template-stage";
-import { CForm } from "@/components/ui/c-form";
-import { CFormField } from "@/components/ui/c-form-field";
+import { Form, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProcessTemplateStage } from "@prisma/client";
@@ -35,13 +34,13 @@ export const UpdateStage = ({ name, id }: ProcessTemplateStage) => {
   });
 
   return (
-    <CForm form={form} onSubmit={onSubmit} submitText="Сохранить">
-      <CFormField
+    <Form form={form} onSubmit={onSubmit} submitText="Сохранить">
+      <FormField
         control={control}
         name="name"
         label="Название"
         render={(props) => <Input {...props} />}
       />
-    </CForm>
+    </Form>
   );
 };

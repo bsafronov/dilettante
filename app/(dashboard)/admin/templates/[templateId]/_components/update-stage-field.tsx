@@ -3,9 +3,6 @@
 import { updateProcessTemplateStageField } from "@/actions/template-stage-field";
 import { SelectProcessTemplateField } from "@/components/select-process-template-field";
 import { Button } from "@/components/ui/button";
-import { CDialog } from "@/components/ui/c-dialog";
-import { CForm } from "@/components/ui/c-form";
-import { CFormField } from "@/components/ui/c-form-field";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProcessTemplateStageField } from "@prisma/client";
@@ -14,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { useBoolean } from "usehooks-ts";
 import { z } from "zod";
 import { DeleteStageField } from "./delete-stage-field";
+import { Dialog } from "@/components/ui/dialog";
+import { Form, FormField } from "@/components/ui/form";
 
 const schema = z.object({
   fieldId: z.number().nullable(),
@@ -56,7 +55,7 @@ export const UpdateStageField = ({ field }: Props) => {
   );
 
   return (
-    <CDialog
+    <Dialog
       open={open}
       onOpenChange={toggle}
       title="Редактирование поля этапа"
@@ -67,22 +66,22 @@ export const UpdateStageField = ({ field }: Props) => {
       }
       footer={<DeleteStageField id={field.id} />}
     >
-      <CForm form={form} onSubmit={onSubmit} submitText="Сохранить">
-        <CFormField
+      <Form form={form} onSubmit={onSubmit} submitText="Сохранить">
+        <FormField
           control={control}
           name="label"
           label="Название"
           description="Отображается над полем ввода"
           render={(props) => <Input {...props} />}
         />
-        <CFormField
+        <FormField
           control={control}
           name="placeholder"
           label="Заполнитель"
           description="Отображается внутри поля ввода до начала набора значения и служит подсказкой к вводу"
           render={(props) => <Input {...props} />}
         />
-        <CFormField
+        <FormField
           control={control}
           name="description"
           label="Описание"
@@ -90,7 +89,7 @@ export const UpdateStageField = ({ field }: Props) => {
           render={(props) => <Input {...props} />}
         />
 
-        <CFormField
+        <FormField
           control={control}
           name="fieldId"
           label="Поле шаблона"
@@ -101,7 +100,7 @@ export const UpdateStageField = ({ field }: Props) => {
             />
           )}
         />
-      </CForm>
-    </CDialog>
+      </Form>
+    </Dialog>
   );
 };

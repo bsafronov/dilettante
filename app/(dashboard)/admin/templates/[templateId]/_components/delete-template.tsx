@@ -1,8 +1,8 @@
 "use client";
 
 import { deleteProcessTemplate } from "@/actions/template";
+import { AlertDialog } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { CAlertDialog } from "@/components/ui/c-alert-dialog";
 import { Trash } from "lucide-react";
 
 type Props = {
@@ -13,13 +13,13 @@ export const DeleteTemplate = ({ id }: Props) => {
   const onDelete = async () => deleteProcessTemplate(id);
 
   return (
-    <CAlertDialog
+    <AlertDialog
       onSubmit={onDelete}
       description="Все данные шаблона будут удалены!"
     >
       <Button variant={"destructive"} size={"icon"}>
         <Trash />
       </Button>
-    </CAlertDialog>
+    </AlertDialog>
   );
 };

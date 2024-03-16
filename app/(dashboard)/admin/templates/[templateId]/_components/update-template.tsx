@@ -1,19 +1,16 @@
 "use client";
 
-import { updateProcessTemplateField } from "@/actions/template-field";
+import { updateProcessTemplate } from "@/actions/template";
 import { Button } from "@/components/ui/button";
-import { CDialog } from "@/components/ui/c-dialog";
-import { CForm } from "@/components/ui/c-form";
-import { CFormField } from "@/components/ui/c-form-field";
+import { Dialog } from "@/components/ui/dialog";
+import { Form, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ProcessTemplate, ProcessTemplateField } from "@prisma/client";
+import { ProcessTemplate } from "@prisma/client";
 import { Settings } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useBoolean } from "usehooks-ts";
 import { z } from "zod";
-import { DeleteField } from "./delete-field";
-import { updateProcessTemplate } from "@/actions/template";
 import { DeleteTemplate } from "./delete-template";
 const schema = z.object({
   name: z.string(),
@@ -40,7 +37,7 @@ export const UpdateTemplate = ({ name, id }: ProcessTemplate) => {
   });
 
   return (
-    <CDialog
+    <Dialog
       open={open}
       onOpenChange={toggle}
       title="Редактирование шаблона"
@@ -51,14 +48,14 @@ export const UpdateTemplate = ({ name, id }: ProcessTemplate) => {
       }
       footer={<DeleteTemplate id={id} />}
     >
-      <CForm form={form} onSubmit={onSubmit} submitText="Сохранить">
-        <CFormField
+      <Form form={form} onSubmit={onSubmit} submitText="Сохранить">
+        <FormField
           control={control}
           name="name"
           label="Название"
           render={(props) => <Input {...props} />}
         />
-      </CForm>
-    </CDialog>
+      </Form>
+    </Dialog>
   );
 };

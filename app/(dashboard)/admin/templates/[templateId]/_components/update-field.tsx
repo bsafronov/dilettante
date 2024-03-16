@@ -2,9 +2,6 @@
 
 import { updateProcessTemplateField } from "@/actions/template-field";
 import { Button } from "@/components/ui/button";
-import { CDialog } from "@/components/ui/c-dialog";
-import { CForm } from "@/components/ui/c-form";
-import { CFormField } from "@/components/ui/c-form-field";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProcessTemplateField } from "@prisma/client";
@@ -13,6 +10,8 @@ import { useForm } from "react-hook-form";
 import { useBoolean } from "usehooks-ts";
 import { z } from "zod";
 import { DeleteField } from "./delete-field";
+import { Dialog } from "@/components/ui/dialog";
+import { Form, FormField } from "@/components/ui/form";
 const schema = z.object({
   name: z.string(),
 });
@@ -38,7 +37,7 @@ export const UpdateField = ({ name, id }: ProcessTemplateField) => {
   });
 
   return (
-    <CDialog
+    <Dialog
       open={open}
       onOpenChange={toggle}
       title="Редактирование поля шаблона"
@@ -49,14 +48,14 @@ export const UpdateField = ({ name, id }: ProcessTemplateField) => {
       }
       footer={<DeleteField fieldId={id} />}
     >
-      <CForm form={form} onSubmit={onSubmit} submitText="Сохранить">
-        <CFormField
+      <Form form={form} onSubmit={onSubmit} submitText="Сохранить">
+        <FormField
           control={control}
           name="name"
           label="Название"
           render={(props) => <Input {...props} />}
         />
-      </CForm>
-    </CDialog>
+      </Form>
+    </Dialog>
   );
 };

@@ -1,9 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CDialog } from "@/components/ui/c-dialog";
-import { CForm } from "@/components/ui/c-form";
-import { CFormField } from "@/components/ui/c-form-field";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -12,6 +9,8 @@ import { useBoolean } from "usehooks-ts";
 import { z } from "zod";
 import { SelectProcessTemplateField } from "@/components/select-process-template-field";
 import { createProcessTemplateStageField } from "@/actions/template-stage-field";
+import { Dialog } from "@/components/ui/dialog";
+import { Form, FormField } from "@/components/ui/form";
 
 const schema = z.object({
   fieldId: z.number().nullable(),
@@ -63,19 +62,19 @@ export const CreateStageField = ({ templateId, stageId }: Props) => {
   );
 
   return (
-    <CDialog
+    <Dialog
       open={open}
       onOpenChange={toggle}
       title="Создание поля"
       trigger={<Button>Добавить поле</Button>}
     >
-      <CForm
+      <Form
         form={form}
         onSubmit={onSubmit}
         isLoading={isSubmitting}
         submitText="Создать"
       >
-        <CFormField
+        <FormField
           control={control}
           name="label"
           label="Название"
@@ -83,7 +82,7 @@ export const CreateStageField = ({ templateId, stageId }: Props) => {
           description="Отображается над полем ввода"
           render={(props) => <Input {...props} />}
         />
-        <CFormField
+        <FormField
           control={control}
           name="fieldId"
           label="Поле шаблона"
@@ -92,21 +91,21 @@ export const CreateStageField = ({ templateId, stageId }: Props) => {
             <SelectProcessTemplateField templateId={templateId} {...props} />
           )}
         />
-        <CFormField
+        <FormField
           control={control}
           name="placeholder"
           label="Заполнитель"
           description="Отображается внутри поля ввода до начала набора значения и служит подсказкой к вводу"
           render={(props) => <Input {...props} />}
         />
-        <CFormField
+        <FormField
           control={control}
           name="description"
           label="Описание"
           description="Отображается под полем ввода"
           render={(props) => <Input {...props} />}
         />
-      </CForm>
-    </CDialog>
+      </Form>
+    </Dialog>
   );
 };

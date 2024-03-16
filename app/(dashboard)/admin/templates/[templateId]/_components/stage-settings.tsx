@@ -1,18 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { CDialog } from "@/components/ui/c-dialog";
 import { Settings } from "lucide-react";
 import { StageInfo } from "./stage-info";
 import { StageFieldList } from "./stage-field-list";
 import { findOneProcessTemplateStage } from "@/actions/template-stage";
 import { DeleteStage } from "./delete-stage";
 import { StageFlowList } from "./stage-flow-list";
+import { Dialog } from "@/components/ui/dialog";
 
 export const StageSettings = ({
   id,
   templateId,
 }: Result<typeof findOneProcessTemplateStage>) => {
   return (
-    <CDialog
+    <Dialog
       title="Настройка этапа"
       trigger={
         <Button variant={"outline"} size={"icon"}>
@@ -27,6 +27,6 @@ export const StageSettings = ({
         <StageFieldList stageId={id} templateId={templateId} />
         <StageFlowList stageId={id} templateId={templateId} />
       </div>
-    </CDialog>
+    </Dialog>
   );
 };

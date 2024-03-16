@@ -24,7 +24,7 @@ export default function Page({ params: { templateId } }: Props) {
         Назад
       </Link>
 
-      <div className="space-y-8">
+      <div className="space-y-4">
         <TemplateInfo templateId={id} />
         <FieldListSection templateId={id} />
         <StageList templateId={id} />

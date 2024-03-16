@@ -4,13 +4,13 @@ import { findManyProcessTemplateField } from "@/actions/template-field";
 import { ProcessTemplateField } from "@prisma/client";
 import { ElementRef, forwardRef, useEffect, useState } from "react";
 import { ControllerRenderProps } from "react-hook-form";
-import { CSelect } from "./ui/c-select";
+import { Select } from "./ui/select";
 
 type Props = Omit<ControllerRenderProps, "ref"> & {
   templateId: ID;
 };
 export const SelectProcessTemplateField = forwardRef<
-  ElementRef<typeof CSelect>,
+  ElementRef<typeof Select>,
   Props
 >(({ templateId, ...props }, ref) => {
   const [fields, setFields] = useState<ProcessTemplateField[]>([]);
@@ -30,7 +30,7 @@ export const SelectProcessTemplateField = forwardRef<
   }));
 
   return (
-    <CSelect
+    <Select
       ref={ref}
       options={options}
       placeholder="Выбрать поле..."
