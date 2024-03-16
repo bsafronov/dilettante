@@ -5,6 +5,7 @@ import {
 } from "@prisma/client";
 import { UpdateStageFlow } from "./update-stage-flow";
 import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 type Props = {
   flow: ProcessTemplateStageFlow;
@@ -23,23 +24,21 @@ export const StageFlowItem = ({ flow, stages, stageFields }: Props) => {
           {!hasConditions && <>Условий нет / не выполняются</>}
           {hasConditions && (
             <>
-              Поле&nbsp;
-              <span className="border rounded-md px-2 py-0.5 bg-slate-50">
+              {/* Поле&nbsp; */}
+              <Badge variant={"secondary"}>
                 {stageFields.find((item) => item.id === flow.fieldId)?.label}
-              </span>
+              </Badge>
               &nbsp;=&nbsp;
-              <span className="border rounded-md px-2 py-0.5 bg-slate-50">
-                {flow.value}
-              </span>
+              <Badge variant={"secondary"}>{flow.value}</Badge>
             </>
           )}
         </span>
         <ArrowRight className="size-4" />
         <span>
-          Следующий этап:&nbsp;
-          <span className="border rounded-md px-2 py-0.5 bg-slate-50">
+          {/* Следующий этап:&nbsp; */}
+          <Badge variant={"secondary"}>
             {stages.find((item) => item.id === flow.nextStageId)?.name}
-          </span>
+          </Badge>
         </span>
       </div>
     </div>

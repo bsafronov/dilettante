@@ -15,7 +15,11 @@ export default async function Page() {
       <div className="mt-4 grid grid-cols-4 gap-4">
         {templates.map((template) => (
           <Link key={template.id} href={`/admin/templates/${template.id}`}>
-            <Card key={template.id} title={template.name} />
+            <Card
+              key={template.id}
+              title={template.name}
+              className="hover:shadow-md"
+            />
           </Link>
         ))}
       </div>

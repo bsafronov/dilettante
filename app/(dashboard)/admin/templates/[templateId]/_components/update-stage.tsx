@@ -1,6 +1,7 @@
 "use client";
 
 import { updateProcessTemplateStage } from "@/actions/template-stage";
+import { Card } from "@/components/ui/card";
 import { Form, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,13 +35,15 @@ export const UpdateStage = ({ name, id }: ProcessTemplateStage) => {
   });
 
   return (
-    <Form form={form} onSubmit={onSubmit} submitText="Сохранить">
-      <FormField
-        control={control}
-        name="name"
-        label="Название"
-        render={(props) => <Input {...props} />}
-      />
-    </Form>
+    <Card title="Об этапе">
+      <Form form={form} onSubmit={onSubmit} submitText="Сохранить">
+        <FormField
+          control={control}
+          name="name"
+          label="Название"
+          render={(props) => <Input {...props} />}
+        />
+      </Form>
+    </Card>
   );
 };

@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { UpdateStageField } from "./update-stage-field";
+import { Badge } from "@/components/ui/badge";
 
 type Props = {
   stageFields: Result<typeof findManyProcessTemplateStageField>;
@@ -31,15 +32,15 @@ export const StageFieldListDemoForm = ({
   const { control } = form;
 
   return (
-    <Form form={form}>
+    <Form form={form} className="flex gap-4 flex-wrap items-center space-y-0">
       {stageFields.map((field) => (
         <div key={field.id} className="border border-dashed rounded-md p-4">
           <div className="flex gap-2 justify-between items-start">
             <UpdateStageField field={field} />
 
-            <div className="border px-2 rounded-md bg-slate-50 flex items-center justify-center">
+            <Badge variant={"outline"}>
               {templateFields.find((item) => item.id === field.fieldId)?.name}
-            </div>
+            </Badge>
           </div>
           <FormField
             control={control}

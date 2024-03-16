@@ -19,8 +19,8 @@ export const NavbarItem = ({ href, icon: Icon, title }: Props) => {
       <Link
         href={href}
         className={cn(
-          "flex gap-2 items-center border rounded-md p-2",
-          pathname === href && "bg-slate-100"
+          "flex gap-2 items-center border border-transparent rounded-md p-2 hover:text-blue-500",
+          pathname.includes(href) && "text-blue-500 bg-blue-50 border-blue-50"
         )}
       >
         <Icon />

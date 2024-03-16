@@ -13,8 +13,8 @@ export const StageList = async ({ templateId }: Props) => {
 
   return (
     <Card
-      title="Этапы"
-      classNameContent="grid grid-cols-4 gap-2"
+      title="Этапы шаблона"
+      classNameContent="flex flex-wrap gap-2"
       footer={<CreateStage templateId={templateId} />}
     >
       <EmptyState hasNode={stages.length > 0} emptyText="Поля отсутствуют">

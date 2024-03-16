@@ -3,6 +3,8 @@
 import { updateProcessTemplateStageField } from "@/actions/template-stage-field";
 import { SelectProcessTemplateField } from "@/components/select-process-template-field";
 import { Button } from "@/components/ui/button";
+import { Dialog } from "@/components/ui/dialog";
+import { Form, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProcessTemplateStageField } from "@prisma/client";
@@ -11,8 +13,6 @@ import { useForm } from "react-hook-form";
 import { useBoolean } from "usehooks-ts";
 import { z } from "zod";
 import { DeleteStageField } from "./delete-stage-field";
-import { Dialog } from "@/components/ui/dialog";
-import { Form, FormField } from "@/components/ui/form";
 
 const schema = z.object({
   fieldId: z.number().nullable(),

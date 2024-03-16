@@ -33,8 +33,8 @@ export const FieldList = ({ fields, stageFields, templateId }: Props) => {
 
   return (
     <Card
-      title="Поля"
-      classNameContent="grid grid-cols-4 gap-2"
+      title="Поля шаблона"
+      classNameContent="flex flex-wrap gap-2"
       footer={<CreateField templateId={templateId} />}
     >
       <EmptyState hasNode={fields.length > 0} emptyText="Поля отсутствуют">

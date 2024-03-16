@@ -17,7 +17,7 @@ type Props = {
 export const FieldItem = ({ field, stageLinks }: Props) => {
   const hasLinks = !!stageLinks[field.id]?.length;
   return (
-    <div className="flex flex-col gap-2 p-4 border rounded-md border-dashed">
+    <div className="grow flex flex-col gap-2 p-4 border rounded-md border-dashed">
       <div className="flex gap-2 items-center justify-between">
         <UpdateField {...field} />
         {hasLinks ? (

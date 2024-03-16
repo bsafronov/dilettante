@@ -11,11 +11,12 @@ import { SelectProcessTemplateField } from "@/components/select-process-template
 import { createProcessTemplateStageField } from "@/actions/template-stage-field";
 import { Dialog } from "@/components/ui/dialog";
 import { Form, FormField } from "@/components/ui/form";
+import { prepareDbData } from "@/lib/utils";
 
 const schema = z.object({
-  fieldId: z.number().nullable(),
+  fieldId: z.number().min(1, "Обязательное поле"),
+  label: z.string().min(1, "Обязательное поле"),
   placeholder: z.string(),
-  label: z.string(),
   description: z.string(),
 });
 
@@ -29,7 +30,7 @@ export const CreateStageField = ({ templateId, stageId }: Props) => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      fieldId: null,
+      fieldId: 0,
       description: "",
       label: "",
       placeholder: "",
@@ -41,25 +42,23 @@ export const CreateStageField = ({ templateId, stageId }: Props) => {
     formState: { isSubmitting },
   } = form;
 
-  const onSubmit = handleSubmit(
-    async ({ fieldId, description, label, placeholder }) => {
-      if (!fieldId) return;
+  const onSubmit = handleSubmit(async (data) => {
+    const { description, fieldId, label, placeholder } = prepareDbData(data);
 
-      try {
-        await createProcessTemplateStageField({
-          fieldId,
-          description,
-          label,
-          placeholder,
-          stageId,
-          templateId,
-        });
-        toggle();
-      } catch {
-        toast.error("Возникла ошибка при создании этапа");
-      }
+    try {
+      await createProcessTemplateStageField({
+        fieldId,
+        description,
+        label,
+        placeholder,
+        stageId,
+        templateId,
+      });
+      toggle();
+    } catch {
+      toast.error("Возникла ошибка при создании этапа");
     }
-  );
+  });
 
   return (
     <Dialog

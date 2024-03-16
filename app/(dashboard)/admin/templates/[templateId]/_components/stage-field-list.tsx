@@ -15,8 +15,7 @@ export const StageFieldList = async ({ stageId, templateId }: Props) => {
 
   return (
     <Card
-      title="Поля"
-      classNameContent="grid grid-cols-3 gap-2"
+      title="Поля этапа (форма)"
       footer={<CreateStageField stageId={stageId} templateId={templateId} />}
     >
       <EmptyState hasNode={stageFields.length > 0} emptyText="Поля отсутствуют">

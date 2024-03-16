@@ -59,9 +59,6 @@ export const UpdateStageFlow = ({
   });
   const { control, handleSubmit, getValues } = form;
 
-  const values = getValues();
-  console.log(values);
-
   const onSubmit = handleSubmit(async (data) => {
     const { fieldId, nextStageId, value } = prepareDbData(data);
     try {

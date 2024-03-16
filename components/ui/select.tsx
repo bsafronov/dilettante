@@ -176,10 +176,14 @@ const Select = forwardRef<ElementRef<typeof SelectTrigger>, Props>(
       >
         <div className="flex gap-1">
           <SelectTrigger ref={ref} {...props}>
-            <SelectValue placeholder={placeholder} />
+            <p className={cn(!value && "text-muted-foreground")}>
+              {value === 0
+                ? placeholder
+                : options.find((i) => i.value === value)?.label}
+            </p>
           </SelectTrigger>
           <Button
-            variant={"ghost"}
+            variant={"outline"}
             size={"icon"}
             onClick={() => onChange(0)}
             type="button"

@@ -15,7 +15,7 @@ export const TemplateInfo = async ({ templateId }: Props) => {
   }
 
   return (
-    <Card title="Общая информация">
+    <Card title="О шаблоне">
       <UpdateTemplate {...template} />
       <div>
         <p>

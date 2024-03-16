@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import {
   ComponentPropsWithoutRef,
@@ -90,7 +92,7 @@ export const Card = forwardRef<
     ref
   ) => {
     return (
-      <Card ref={ref} {...props}>
+      <_Card ref={ref} {...props}>
         {(title || description) && (
           <CardHeader>
             {title && <CardTitle>{title}</CardTitle>}
@@ -101,9 +103,9 @@ export const Card = forwardRef<
           <CardContent className={classNameContent}>{children}</CardContent>
         )}
         {footer && <CardFooter>{footer}</CardFooter>}
-      </Card>
+      </_Card>
     );
   }
 );
 
-Card.displayName = "CCard";
+Card.displayName = "Card";

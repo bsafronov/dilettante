@@ -2,6 +2,7 @@
 
 import { LayoutDashboard, User2 } from "lucide-react";
 import { NavbarItem } from "./navbar-item";
+import { Card } from "@/components/ui/card";
 
 const links = [
   {
@@ -18,10 +19,10 @@ const links = [
 
 export const Navbar = () => {
   return (
-    <div className="p-2 border rounded-md flex flex-col gap-2">
+    <Card classNameContent="flex flex-col gap-2" className="sticky top-4">
       {links.map((link) => (
         <NavbarItem key={link.href} {...link} />
       ))}
-    </div>
+    </Card>
   );
 };

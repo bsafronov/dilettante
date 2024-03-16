@@ -284,7 +284,7 @@ const Form = <T extends FieldValues>({
   return (
     <_Form {...form}>
       <form onSubmit={onSubmit}>
-        <div className={cn("space-y-2", className)}>{children}</div>
+        <div className={cn("space-y-6", className)}>{children}</div>
         <div className="flex justify-end mt-4 gap-4">
           {hasCancel && (
             <Button variant={"outline"} onClick={handleCancel}>
