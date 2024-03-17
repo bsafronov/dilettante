@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { createProcessTemplate } from "@/actions/template";
 import { Form, FormField } from "@/components/ui/form";
+import { Card } from "@/components/ui/card";
 
 const schema = z.object({
   name: z.string(),
@@ -35,13 +36,15 @@ export default function Page() {
   });
 
   return (
-    <Form form={form} onSubmit={onSubmit} submitText="Создать">
-      <FormField
-        control={control}
-        name="name"
-        label="Название"
-        render={(props) => <Input {...props} />}
-      />
-    </Form>
+    <Card>
+      <Form form={form} onSubmit={onSubmit} submitText="Создать">
+        <FormField
+          control={control}
+          name="name"
+          label="Название"
+          render={(props) => <Input {...props} />}
+        />
+      </Form>
+    </Card>
   );
 }

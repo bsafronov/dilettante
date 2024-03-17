@@ -176,7 +176,12 @@ const Select = forwardRef<ElementRef<typeof SelectTrigger>, Props>(
       >
         <div className="flex gap-1">
           <SelectTrigger ref={ref} {...props}>
-            <p className={cn(!value && "text-muted-foreground")}>
+            <p
+              className={cn(
+                !value && "text-muted-foreground",
+                "text-start truncate max-w-80"
+              )}
+            >
               {value === 0
                 ? placeholder
                 : options.find((i) => i.value === value)?.label}
@@ -187,15 +192,16 @@ const Select = forwardRef<ElementRef<typeof SelectTrigger>, Props>(
             size={"icon"}
             onClick={() => onChange(0)}
             type="button"
+            className="grow"
           >
             <X className="size-4" />
           </Button>
         </div>
-        <SelectContent>
+        <SelectContent side="bottom">
           {options.length > 0 &&
             options.map((option, i) => (
               <SelectItem key={i} value={option.value.toString()}>
-                {option.label}
+                <div>{option.label}</div>
               </SelectItem>
             ))}
           {options.length === 0 && (

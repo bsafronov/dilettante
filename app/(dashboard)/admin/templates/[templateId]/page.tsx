@@ -5,7 +5,6 @@ import Link from "next/link";
 import { FieldListSection } from "./_components/field-list-section";
 import { StageList } from "./_components/stage-list";
 import { TemplateInfo } from "./_components/template-info";
-import { CheckoutFlow } from "./_components/checkout-flow";
 
 type Props = {
   params: {
@@ -29,7 +28,6 @@ export default function Page({ params: { templateId } }: Props) {
         <TemplateInfo templateId={id} />
         <FieldListSection templateId={id} />
         <StageList templateId={id} />
-        <CheckoutFlow templateId={id} />
       </div>
     </div>
   );

@@ -3,7 +3,9 @@ import { findManyProcessTemplateStageFlow } from "@/actions/template-stage-flow"
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
 import { Edge, Node } from "reactflow";
-import { CheckoutFlowList } from "./checkout-flow-list";
+import { CheckoutFlowMap } from "./checkout-flow-list";
+import { findManyProcessTemplateStageField } from "@/actions/template-stage-field";
+import { ProcessTemplateStageField } from "@prisma/client";
 
 type Props = {
   templateId: ID;
@@ -12,10 +14,18 @@ type Props = {
 export const CheckoutFlow = async ({ templateId }: Props) => {
   const stageFlows = await findManyProcessTemplateStageFlow({ templateId });
   const stages = await findManyProcessTemplateStage({ templateId });
+  const stageFields = await findManyProcessTemplateStageField({ templateId });
+
+  const stageFieldMap: Record<ID, ProcessTemplateStageField> = {};
+
+  stageFields.forEach((item) => {
+    stageFieldMap[item.id] = item;
+  });
 
   const initialNodes: Node[] = stages.map((item, i) => ({
     id: `${item.id}`,
-    position: { x: i * 100, y: i * 100 },
+    position: { x: 0, y: i * 100 },
+    type: "custom",
     data: {
       label: item.name,
     },
@@ -25,17 +35,23 @@ export const CheckoutFlow = async ({ templateId }: Props) => {
     id: `e${item.stageId}-${item.nextStageId}`,
     source: `${item.stageId}`,
     target: `${item.nextStageId}`,
-    label: item.value ?? undefined,
+    label: item.fieldId
+      ? `"${stageFieldMap[item.fieldId].label}" = ${item.value}`
+      : undefined,
+    animated: true,
   }));
 
   return (
     <Dialog
       title="Поток"
-      trigger={<Button>Смотреть поток</Button>}
+      trigger={<Button variant={"outline"}>Схема</Button>}
       full
       className="p-0"
     >
-      <CheckoutFlowList edges={initialEdges} nodes={initialNodes} />
+      <CheckoutFlowMap
+        initialEdges={initialEdges}
+        initialNodes={initialNodes}
+      />
     </Dialog>
   );
 };
