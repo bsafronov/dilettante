@@ -1,17 +1,19 @@
 "use client";
 
+import { createProcessTemplateStageField } from "@/actions/template-stage-field";
+import { CDialog } from "@/components/dialog";
+import { CForm } from "@/components/form";
+import { CFormField } from "@/components/form-field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { prepareDbData } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useBoolean } from "usehooks-ts";
+import Select from "react-tailwindcss-select";
 import { z } from "zod";
-import { SelectProcessTemplateField } from "@/components/select-process-template-field";
-import { createProcessTemplateStageField } from "@/actions/template-stage-field";
-import { Dialog } from "@/components/ui/dialog";
-import { Form, FormField } from "@/components/ui/form";
-import { prepareDbData } from "@/lib/utils";
+import { ProcessTemplateField } from "@prisma/client";
 
 const schema = z.object({
   fieldId: z.number().min(1, "Обязательное поле"),
@@ -23,10 +25,20 @@ const schema = z.object({
 type Props = {
   templateId: ID;
   stageId: ID;
+  templateFields: ProcessTemplateField[];
 };
 
-export const CreateStageField = ({ templateId, stageId }: Props) => {
+export const CreateStageField = ({
+  templateId,
+  stageId,
+  templateFields,
+}: Props) => {
   const { value: open, toggle } = useBoolean();
+  const templateFieldsOptions = templateFields.map((v) => ({
+    value: `${v.id}`,
+    label: v.name,
+  }));
+
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -61,19 +73,19 @@ export const CreateStageField = ({ templateId, stageId }: Props) => {
   });
 
   return (
-    <Dialog
+    <CDialog
       open={open}
       onOpenChange={toggle}
       title="Создание поля"
       trigger={<Button>Добавить поле</Button>}
     >
-      <Form
+      <CForm
         form={form}
         onSubmit={onSubmit}
         isLoading={isSubmitting}
         submitText="Создать"
       >
-        <FormField
+        <CFormField
           control={control}
           name="label"
           label="Название"
@@ -81,30 +93,39 @@ export const CreateStageField = ({ templateId, stageId }: Props) => {
           description="Отображается над полем ввода"
           render={(props) => <Input {...props} />}
         />
-        <FormField
+        <CFormField
           control={control}
           name="fieldId"
           label="Поле шаблона"
           required
-          render={(props) => (
-            <SelectProcessTemplateField templateId={templateId} {...props} />
+          render={({ value, onChange, ...rest }) => (
+            <Select
+              primaryColor="slate"
+              options={templateFieldsOptions}
+              value={
+                templateFieldsOptions.find(
+                  (v) => v.value === value.toString()
+                ) ?? null
+              }
+              onChange={() => onChange()}
+            />
           )}
         />
-        <FormField
+        <CFormField
           control={control}
           name="placeholder"
           label="Заполнитель"
           description="Отображается внутри поля ввода до начала набора значения и служит подсказкой к вводу"
           render={(props) => <Input {...props} />}
         />
-        <FormField
+        <CFormField
           control={control}
           name="description"
           label="Описание"
           description="Отображается под полем ввода"
           render={(props) => <Input {...props} />}
         />
-      </Form>
-    </Dialog>
+      </CForm>
+    </CDialog>
   );
 };

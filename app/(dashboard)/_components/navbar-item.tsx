@@ -1,5 +1,6 @@
 "use client";
 
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
@@ -19,8 +20,8 @@ export const NavbarItem = ({ href, icon: Icon, title }: Props) => {
       <Link
         href={href}
         className={cn(
-          "flex gap-2 items-center border border-transparent rounded-md p-2 hover:text-blue-500",
-          pathname.includes(href) && "text-blue-500 bg-blue-50 border-blue-50"
+          "py-2 px-4 rounded-lg hover:bg-slate-100 flex items-center gap-2",
+          pathname.includes(href) && "bg-sky-100 text-sky-700 hover:bg-sky-100"
         )}
       >
         <Icon />

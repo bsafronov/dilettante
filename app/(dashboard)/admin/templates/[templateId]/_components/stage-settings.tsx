@@ -15,7 +15,7 @@ export const StageSettings = ({
     <Dialog
       title="Настройка этапа"
       trigger={
-        <Button variant={"outline"} size={"icon"}>
+        <Button variant={"secondaryOutline"} size={"icon"}>
           <Settings />
         </Button>
       }

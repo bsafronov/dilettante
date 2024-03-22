@@ -18,7 +18,10 @@ export default function Page({ params: { templateId } }: Props) {
     <div>
       <Link
         href={"/admin/templates"}
-        className={cn(buttonVariants({ variant: "outline" }), "gap-1 mb-4")}
+        className={cn(
+          buttonVariants({ variant: "ghost" }),
+          "justify-start gap-1 mb-4"
+        )}
       >
         <ArrowLeft className="size-4" />
         Назад

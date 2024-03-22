@@ -42,7 +42,7 @@ export const UpdateTemplate = ({ name, id }: ProcessTemplate) => {
       onOpenChange={toggle}
       title="Редактирование шаблона"
       trigger={
-        <Button size={"icon"} variant={"outline"}>
+        <Button size={"icon"} variant={"secondaryOutline"}>
           <Settings />
         </Button>
       }

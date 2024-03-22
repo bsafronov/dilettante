@@ -28,13 +28,13 @@ export const FieldItem = ({ field, stageLinks }: Props) => {
       </div>
       <div>
         <p>
-          <span className="text-muted-foreground">Название:</span> {field.name}
+          <span className="text-slate-500">Название:</span> {field.name}
         </p>
       </div>
 
       <EmptyState emptyText="Нет привязанных полей" hasNode={hasLinks}>
         <div>
-          <span className="text-muted-foreground">Привязанные поля формы</span>
+          <span className="text-slate-500">Привязанные поля формы</span>
           {stageLinks[field.id]?.map((item) => (
             <div key={item.id} className="border p-2 rounded-md">
               {item.label}

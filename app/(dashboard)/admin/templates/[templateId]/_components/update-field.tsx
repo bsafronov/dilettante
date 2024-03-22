@@ -42,7 +42,7 @@ export const UpdateField = ({ name, id }: ProcessTemplateField) => {
       onOpenChange={toggle}
       title="Редактирование поля шаблона"
       trigger={
-        <Button size={"icon"} variant={"outline"}>
+        <Button size={"icon"} variant={"secondaryOutline"}>
           <Settings />
         </Button>
       }

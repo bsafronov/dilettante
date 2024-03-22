@@ -1,20 +1,21 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { Input } from "@/components/ui/input";
 import { createProcessTemplate } from "@/actions/template";
-import { Form, FormField } from "@/components/ui/form";
-import { Card } from "@/components/ui/card";
+import { CForm } from "@/components/form";
+import { CFormField } from "@/components/form-field";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 const schema = z.object({
   name: z.string(),
+  someId: z.number(),
 });
 
-export default function Page() {
+export const CreateTemplateForm = () => {
   const router = useRouter();
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -25,8 +26,6 @@ export default function Page() {
   const { control, handleSubmit } = form;
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
-
     try {
       const { id } = await createProcessTemplate(data);
       router.push(`/admin/templates/${id}`);
@@ -36,15 +35,14 @@ export default function Page() {
   });
 
   return (
-    <Card>
-      <Form form={form} onSubmit={onSubmit} submitText="Создать">
-        <FormField
-          control={control}
-          name="name"
-          label="Название"
-          render={(props) => <Input {...props} />}
-        />
-      </Form>
-    </Card>
+    <CForm form={form} onSubmit={onSubmit} submitText="Создать">
+      <CFormField
+        control={control}
+        name="name"
+        label="Название"
+        required
+        render={(props) => <Input {...props} />}
+      />
+    </CForm>
   );
-}
+};

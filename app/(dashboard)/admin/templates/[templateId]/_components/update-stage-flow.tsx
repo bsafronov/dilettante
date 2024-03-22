@@ -81,7 +81,7 @@ export const UpdateStageFlow = ({
       onOpenChange={toggle}
       title="Редактирование"
       trigger={
-        <Button size={"icon"} variant={"outline"}>
+        <Button size={"icon"} variant={"secondaryOutline"}>
           <Settings />
         </Button>
       }

@@ -60,7 +60,7 @@ export const UpdateStageField = ({ field }: Props) => {
       onOpenChange={toggle}
       title="Редактирование поля этапа"
       trigger={
-        <Button size={"icon"} variant={"outline"}>
+        <Button size={"icon"} variant={"secondaryOutline"}>
           <Settings />
         </Button>
       }

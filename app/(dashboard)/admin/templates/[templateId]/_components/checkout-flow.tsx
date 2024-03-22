@@ -6,6 +6,7 @@ import { Edge, Node } from "reactflow";
 import { CheckoutFlowMap } from "./checkout-flow-list";
 import { findManyProcessTemplateStageField } from "@/actions/template-stage-field";
 import { ProcessTemplateStageField } from "@prisma/client";
+import { CDialog } from "@/components/dialog";
 
 type Props = {
   templateId: ID;
@@ -42,7 +43,7 @@ export const CheckoutFlow = async ({ templateId }: Props) => {
   }));
 
   return (
-    <Dialog
+    <CDialog
       title="Поток"
       trigger={<Button variant={"outline"}>Схема</Button>}
       full
@@ -52,6 +53,6 @@ export const CheckoutFlow = async ({ templateId }: Props) => {
         initialEdges={initialEdges}
         initialNodes={initialNodes}
       />
-    </Dialog>
+    </CDialog>
   );
 };

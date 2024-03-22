@@ -10,6 +10,9 @@ import { toast } from "sonner";
 import { createProcessTemplateField } from "@/actions/template-field";
 import { Dialog } from "@/components/ui/dialog";
 import { Form, FormField } from "@/components/ui/form";
+import { CDialog } from "@/components/dialog";
+import { CForm } from "@/components/form";
+import { CFormField } from "@/components/form-field";
 
 const schema = z.object({
   name: z.string(),
@@ -46,26 +49,26 @@ export const CreateField = ({ templateId }: Props) => {
   });
 
   return (
-    <Dialog
+    <CDialog
       open={open}
       onOpenChange={toggle}
       title="Создание поля"
       trigger={<Button>Создать поле</Button>}
     >
-      <Form
+      <CForm
         form={form}
         onSubmit={onSubmit}
         isLoading={isSubmitting}
         submitText="Создать"
       >
-        <FormField
+        <CFormField
           control={control}
           name="name"
           label="Название"
           required
           render={(props) => <Input {...props} />}
         />
-      </Form>
-    </Dialog>
+      </CForm>
+    </CDialog>
   );
 };

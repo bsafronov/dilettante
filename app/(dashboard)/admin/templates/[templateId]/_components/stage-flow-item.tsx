@@ -19,7 +19,7 @@ export const StageFlowItem = ({ flow, stages, stageFields }: Props) => {
   return (
     <div className="border rounded-md border-dashed p-4 flex gap-4">
       <UpdateStageFlow {...flow} />
-      <div className="flex items-center gap-1 flex-wrap text-muted-foreground">
+      <div className="flex items-center gap-1 flex-wrap text-slate-500">
         <span>
           {!hasConditions && <>Условий нет / не выполняются</>}
           {hasConditions && (

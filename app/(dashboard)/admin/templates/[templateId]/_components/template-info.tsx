@@ -19,8 +19,7 @@ export const TemplateInfo = async ({ templateId }: Props) => {
       <UpdateTemplate {...template} />
       <div>
         <p>
-          <span className="text-muted-foreground">Название:</span>{" "}
-          {template.name}
+          <span className="text-slate-500">Название:</span> {template.name}
         </p>
       </div>
     </Card>

@@ -3,6 +3,7 @@
 import { LayoutDashboard, User2 } from "lucide-react";
 import { NavbarItem } from "./navbar-item";
 import { Card } from "@/components/ui/card";
+import { CCard } from "@/components/card";
 
 const links = [
   {
@@ -19,10 +20,10 @@ const links = [
 
 export const Navbar = () => {
   return (
-    <Card classNameContent="flex flex-col gap-2" className="sticky top-4">
+    <CCard classNameContent="flex flex-col gap-2" className="sticky top-4">
       {links.map((link) => (
         <NavbarItem key={link.href} {...link} />
       ))}
-    </Card>
+    </CCard>
   );
 };
