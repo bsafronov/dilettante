@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
+import { ComponentPropsWithoutRef, ReactNode } from "react";
 import {
   Dialog,
   DialogBody,
@@ -10,7 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { ComponentPropsWithoutRef, ReactNode } from "react";
 
 type Props = ComponentPropsWithoutRef<typeof Dialog> & {
   title: string;

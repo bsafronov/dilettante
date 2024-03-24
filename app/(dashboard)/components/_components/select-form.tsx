@@ -3,10 +3,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CForm } from "./form";
-import { CFormField } from "./form-field";
-import { Select } from "./select";
 import { getFakeUsers } from "@/actions/faker";
+import { CForm } from "@/components/form";
+import { CFormField } from "@/components/form-field";
+import { Select } from "@/components/ui/select";
 
 type Props = {
   users: Result<typeof getFakeUsers>;
@@ -16,11 +16,19 @@ const schema = z.object({
   select: z.number().min(0, "Обязательное поле"),
 });
 
+const numberArray = [1, 2, 3];
+const stringArray = ["1", "2", "3"];
+const recordArray = [
+  { id: 1, name: "1" },
+  { id: 2, name: "2" },
+  { id: 3, name: "3" },
+];
+
 export const SelectForm = ({ users }: Props) => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      select: 0,
+      select: -1,
     },
   });
   const { control, handleSubmit, getValues } = form;
@@ -35,38 +43,8 @@ export const SelectForm = ({ users }: Props) => {
         label="Тест селекта"
         description="Надеюсь, он будет нормально работать"
         required
-        render={(props) => (
-          <Select
-            render={"name"}
-            options={users}
-            by="id"
-
-            // {...props}
-            // {...props}
-            // by={"id"}
-            // options={users}
-            // render={"name"}
-            // searchBy={["name"]}
-
-            // value={value}
-            // onChange={onChange}
-          />
-        )}
+        render={(props) => <Select options={numberArray} />}
       />
     </CForm>
-  );
-};
-
-const SelectItem = ({
-  name,
-  internet: { email, ip, username },
-}: Props["users"][number]) => {
-  return (
-    <div className="flex flex-col truncate">
-      <span>{name}</span>
-      <span className="text-slate-500 text-xs truncate">{email}</span>
-      <span className="text-rose-500 text-xs truncate">{username}</span>
-      <span className="text-green-500 text-xs truncate">{ip}</span>
-    </div>
   );
 };

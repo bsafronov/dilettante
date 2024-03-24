@@ -29,7 +29,6 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
-    "react-tailwindcss-select": "^1.8.5",
     "reactflow": "^11.10.4",
     "sonner": "^1.4.3",
     "tailwind-merge": "^2.2.1",
