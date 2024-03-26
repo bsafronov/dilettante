@@ -41,7 +41,7 @@ export const CForm = <T extends FieldValues>({
               {cancelText}
             </Button>
           )}
-          <Button disabled={isLoading} className="gap-2">
+          <Button disabled={isLoading} className="gap-2" type="submit">
             {isLoading && (
               <Loader2 className="text-primary-foreground animate-spin" />
             )}

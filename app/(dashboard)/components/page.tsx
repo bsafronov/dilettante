@@ -1,6 +1,6 @@
 import { getFakeUsers } from "@/actions/faker";
-import { SelectForm } from "./_components/select-form";
 import { CCard } from "@/components/card";
+import { SelectShowcase } from "./_components/select-showcase";
 
 const Page = async () => {
   const users = await getFakeUsers();
@@ -8,7 +8,8 @@ const Page = async () => {
   return (
     <div>
       <CCard>
-        <SelectForm users={users} />
+        {/* <SelectForm users={users} /> */}
+        <SelectShowcase users={users} />
       </CCard>
     </div>
   );
